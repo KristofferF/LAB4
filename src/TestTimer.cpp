@@ -7,6 +7,7 @@
 
 //===< include >=====================================================================================================================================
 #include "Timer.h"
+#include "IntArray.h"
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -17,14 +18,20 @@ using namespace std;
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 int main(int argc, const char* argv[])
 {
-	Timer timer;                                                  // Skapa ett Timer-objekt
+//	Timer timer;                                                  // Skapa ett Timer-objekt
+//
+//	timer.start();                                                // Starta tidtagningen
+//	cout << "Tryck ENTER!!" << endl;
+//	string s;
+//	while(!getline(cin,s));                                       // Vänta på att användaren trycker på ENTER
+//	cout << fixed << setprecision(6);
+//	cout << "Tid = " << timer.stop()/1000000 << " [s]" <<  endl;  // Läs av stopptiden och beräkna skillnaden till starttiden
+    IntArray intArray(5000);
+    intArray.fillWithRandomNumbers();
+    for(size_t i = 0; i < intArray.getSize(); i++){
+            cout << i << ": " << intArray.getValue(i) << endl;
+       }
+    return 0;
 
-	timer.start();                                                // Starta tidtagningen     
-	cout << "Tryck ENTER!!" << endl;
-	string s;
-	while(!getline(cin,s));                                       // Vänta på att användaren trycker på ENTER 
-	cout << fixed << setprecision(6);
-	cout << "Tid = " << timer.stop()/1000000 << " [s]" <<  endl;  // Läs av stopptiden och beräkna skillnaden till starttiden
-	return 0; 
 }
 //___________________________________________________________________________________________________________________________________________________
