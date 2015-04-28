@@ -101,11 +101,31 @@ void IntArray::quickSortArray(int a[], int first, int last){
 }
 
 void IntArray::insertionSort(){
-
+    for (size_t i = 1; i < maxSize; i++) {
+        size_t j = i;
+        while (j > 0 && arr[j - 1] > arr[j]) {
+            int tmp = arr[j];
+            arr[j] = arr[j - 1];
+            arr[j - 1] = tmp;
+            j--;
+        }
+    }
 }
 
 void IntArray::selectionSort(){
-
+    size_t smallIdx = 0;
+    for(size_t i=0; i < maxSize - 1; i++)
+    {
+        smallIdx = i; //Index för det minsta elementet till höger om pos i
+        for(size_t j= i+1; j < maxSize; j++){ // Sök det minsta "osorterade" elementet
+            if(arr[j] < arr[smallIdx]){
+                smallIdx = j; // Spara index för det minsta elementet
+            }
+        }
+        if(smallIdx != i){ // Byt plats om det fanns något mindre än a[i]
+            swap(arr[i], arr[smallIdx]);
+        }
+    }
 }
 
 void IntArray::bubbleSort(){
