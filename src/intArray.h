@@ -38,6 +38,7 @@ class IntArray
 		void fillWithRandomNumbers();
 
 		// ----------------- Sorteringsfunktioner
+		void quickSort1(int a[], int first, int last);
 		void quickSort();
 		void insertionSort();
 		void selectionSort();

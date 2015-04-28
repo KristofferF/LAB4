@@ -69,7 +69,35 @@ void IntArray::fillWithRandomNumbers(){
 }
 
 void IntArray::quickSort(){
+    quickSort1(arr, 0, maxSize);
+}
 
+
+void IntArray::quickSort1(int a[], int first, int last){
+    if(first < last){
+        int low  = first;
+        int high = last;
+        if(a[first] > a[last]){
+            swap(a[first], a[last]);
+        }
+        do {
+            // Gå från från början och sök första värdet som är större än a[first]
+            do{ low++; }while(a[low] < a[first]);
+
+            // Gå från från början och sök första värdet som är större än a[first]
+            do{ high--;}while(a[high] > a[first]);
+
+            // Byt plats på a[low] och a[high] om low < high
+            if(low < high){
+                swap(a[low], a[high]);
+            }
+        }while(low <= high);        // Fortsätt tills low > high
+
+        swap(a[first], a[high]);    // Placera a[first] i sorterad position
+
+        quickSort1(a, first, high-1);   // Sortera vänster dellista
+        quickSort1(a, high+1, last);    // Sortera höger dellista
+    }
 }
 
 void IntArray::insertionSort(){
