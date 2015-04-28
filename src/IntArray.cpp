@@ -69,11 +69,11 @@ void IntArray::fillWithRandomNumbers(){
 }
 
 void IntArray::quickSort(){
-    quickSort1(arr, 0, maxSize);
+    quickSortArray(arr, 0, maxSize);
 }
 
 
-void IntArray::quickSort1(int a[], int first, int last){
+void IntArray::quickSortArray(int a[], int first, int last){
     if(first < last){
         int low  = first;
         int high = last;
@@ -95,8 +95,8 @@ void IntArray::quickSort1(int a[], int first, int last){
 
         swap(a[first], a[high]);    // Placera a[first] i sorterad position
 
-        quickSort1(a, first, high-1);   // Sortera vänster dellista
-        quickSort1(a, high+1, last);    // Sortera höger dellista
+        quickSortArray(a, first, high-1);   // Sortera vänster dellista
+        quickSortArray(a, high+1, last);    // Sortera höger dellista
     }
 }
 
@@ -109,5 +109,18 @@ void IntArray::selectionSort(){
 }
 
 void IntArray::bubbleSort(){
+    for(size_t pass=0; pass < maxSize-1; pass++){
+        for(size_t i=0; i < maxSize-1; i++){
+            if(arr[i] > arr[i+1]) // Jämför elementen i och i+1
+            {
+            swap(arr[i], arr[i+1]); // Byt plats om element i > element i+1
+            }
+        }
+    }
+}
 
+void IntArray::swap(int &a, int &b){
+    int tmp = a;
+    a = b;
+    b = tmp;
 }

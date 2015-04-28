@@ -18,6 +18,9 @@ class IntArray
 		size_t maxSize; // Arrayens maximala storlek
 		size_t size; // IntArrayens aktuella storlek
 
+		void quickSortArray(int a[], int first, int last);
+		void swap(int &a, int &b);
+
 	public:
 		// ---------------- Konstruktorer och destruktor
 		IntArray();
@@ -38,7 +41,6 @@ class IntArray
 		void fillWithRandomNumbers();
 
 		// ----------------- Sorteringsfunktioner
-		void quickSort1(int a[], int first, int last);
 		void quickSort();
 		void insertionSort();
 		void selectionSort();
