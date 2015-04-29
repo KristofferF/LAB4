@@ -30,7 +30,7 @@ IntArray::~IntArray() {
     delete[] arr;
     arr = NULL;
     cout << endl << "Running destructor for IntArray with maxSize= " << maxSize
-            << endl;
+            << endl << endl;
 }
 
 int IntArray::getValue(int idx) const {
@@ -59,48 +59,51 @@ const IntArray &IntArray::operator=(const IntArray &a) {
     return *this;
 }
 
-void IntArray::fillWithRandomNumbers(){
+void IntArray::fillWithRandomNumbers() {
     default_random_engine generator(static_cast<unsigned>(time(0)));
-    uniform_int_distribution<int> random(0,maxSize-1);
-    for(size_t i = 0; i < maxSize; i++){
+    uniform_int_distribution<int> random(0, maxSize - 1);
+    for (size_t i = 0; i < maxSize; i++) {
         int temp = random(generator);
         addValue(temp);
     }
 }
 
-void IntArray::quickSort(){
+void IntArray::quickSort() {
     quickSortArray(arr, 0, maxSize);
 }
 
-
-void IntArray::quickSortArray(int a[], int first, int last){
-    if(first < last){
-        int low  = first;
+void IntArray::quickSortArray(int a[], int first, int last) {
+    if (first < last) {
+        int low = first;
         int high = last;
-        if(a[first] > a[last]){
+        if (a[first] > a[last]) {
             swap(a[first], a[last]);
         }
         do {
             // Gå från från början och sök första värdet som är större än a[first]
-            do{ low++; }while(a[low] < a[first]);
+            do {
+                low++;
+            } while (a[low] < a[first]);
 
             // Gå från från början och sök första värdet som är större än a[first]
-            do{ high--;}while(a[high] > a[first]);
+            do {
+                high--;
+            } while (a[high] > a[first]);
 
             // Byt plats på a[low] och a[high] om low < high
-            if(low < high){
+            if (low < high) {
                 swap(a[low], a[high]);
             }
-        }while(low <= high);        // Fortsätt tills low > high
+        } while (low <= high);        // Fortsätt tills low > high
 
         swap(a[first], a[high]);    // Placera a[first] i sorterad position
 
-        quickSortArray(a, first, high-1);   // Sortera vänster dellista
-        quickSortArray(a, high+1, last);    // Sortera höger dellista
+        quickSortArray(a, first, high - 1);   // Sortera vänster dellista
+        quickSortArray(a, high + 1, last);    // Sortera höger dellista
     }
 }
 
-void IntArray::insertionSort(){
+void IntArray::insertionSort() {
     for (size_t i = 1; i < maxSize; i++) {
         size_t j = i;
         while (j > 0 && arr[j - 1] > arr[j]) {
@@ -112,34 +115,33 @@ void IntArray::insertionSort(){
     }
 }
 
-void IntArray::selectionSort(){
+void IntArray::selectionSort() {
     size_t smallIdx = 0;
-    for(size_t i=0; i < maxSize - 1; i++)
-    {
+    for (size_t i = 0; i < maxSize - 1; i++) {
         smallIdx = i; //Index för det minsta elementet till höger om pos i
-        for(size_t j= i+1; j < maxSize; j++){ // Sök det minsta "osorterade" elementet
-            if(arr[j] < arr[smallIdx]){
+        for (size_t j = i + 1; j < maxSize; j++) { // Sök det minsta "osorterade" elementet
+            if (arr[j] < arr[smallIdx]) {
                 smallIdx = j; // Spara index för det minsta elementet
             }
         }
-        if(smallIdx != i){ // Byt plats om det fanns något mindre än a[i]
+        if (smallIdx != i) { // Byt plats om det fanns något mindre än a[i]
             swap(arr[i], arr[smallIdx]);
         }
     }
 }
 
-void IntArray::bubbleSort(){
-    for(size_t pass=0; pass < maxSize-1; pass++){
-        for(size_t i=0; i < maxSize-1; i++){
-            if(arr[i] > arr[i+1]) // Jämför elementen i och i+1
-            {
-            swap(arr[i], arr[i+1]); // Byt plats om element i > element i+1
+void IntArray::bubbleSort() {
+    for (size_t pass = 0; pass < maxSize - 1; pass++) {
+        for (size_t i = 0; i < maxSize - 1; i++) {
+            if (arr[i] > arr[i + 1]) // Jämför elementen i och i+1
+                    {
+                swap(arr[i], arr[i + 1]); // Byt plats om element i > element i+1
             }
         }
     }
 }
 
-void IntArray::swap(int &a, int &b){
+void IntArray::swap(int &a, int &b) {
     int tmp = a;
     a = b;
     b = tmp;

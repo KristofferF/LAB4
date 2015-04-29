@@ -30,57 +30,44 @@ void printArray(const IntArray& array) {
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 int main(int argc, const char* argv[])
 {
-    IntArray intArrayQuick;
-    IntArray intArrayInsertion;
-    IntArray intArraySelection;
-    IntArray intArrayBubble;
 
     Timer timer;
     vector<int> levels = { 5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000 };
-    //vector<IntArray> arrays = { intArrayQuick, intArrayInsertion, intArraySelection, intArrayBubble};
+    vector<IntArray> arrays;
+    IntArray intArray;
 
-    for (int i = 0; i < 8 ; i++){
-        intArrayQuick = IntArray(levels[i]);
-        intArrayQuick.fillWithRandomNumbers();
-        intArrayInsertion = IntArray(intArrayQuick);
-        intArraySelection = IntArray(intArrayQuick);
-        intArrayBubble = IntArray(intArrayQuick);
+    for (int level : levels){
+        cout << "--------------------------------------------------" <<  endl;
+        cout << "Testing sorting algorithms for " << level << " entries." <<  endl <<  endl;
+        IntArray tmp(level);
+        tmp.fillWithRandomNumbers();
 
-
-
-//        printArray(intArrayQuick);
+        cout << "Sorting " << level << " entries with quick sort" <<  endl;
+        intArray = tmp;
         timer.start();
-        intArrayQuick.quickSort();
-        cout << "quickSort Tid = " << timer.stop()/1000000 << " [s]" <<  endl;  // Läs av stopptiden och beräkna skillnaden till starttiden
-//        printArray(intArrayQuick);
+        intArray.quickSort();
+        cout << "Quick sort time= " << timer.stop()/1000000 << " [s]" <<  endl <<  endl;
 
-//        printArray(intArrayInsertion);
+        cout << "Sorting " << level << " entries with insertion sort" <<  endl;
+        intArray = tmp;
         timer.start();
-        intArrayInsertion.insertionSort();
-        cout << "insertionSort Tid = " << timer.stop()/1000000 << " [s]" <<  endl;  // Läs av stopptiden och beräkna skillnaden till starttiden
-//        printArray(intArrayInsertion);
+        intArray.insertionSort();
+        cout << "Insertion sort time = " << timer.stop()/1000000 << " [s]" <<  endl <<  endl;
 
-//        printArray(intArraySelection);
+        cout << "Sorting " << level << " entries with selection sort" <<  endl;
+        intArray = tmp;
         timer.start();
-        intArraySelection.selectionSort();
-        cout << "selectionSort Tid = " << timer.stop()/1000000 << " [s]" <<  endl;  // Läs av stopptiden och beräkna skillnaden till starttiden
-//        printArray(intArraySelection);
+        intArray.selectionSort();
+        cout << "Selection sort time = " << timer.stop()/1000000 << " [s]" <<  endl <<  endl;
 
-//        printArray(intArrayBubble);
+        cout << "Sorting " << level << " entries with bubble sort" <<  endl;
+        intArray = tmp;
         timer.start();
-        intArrayBubble.bubbleSort();
-        cout << "bubbleSort Tid = " << timer.stop()/1000000 << " [s]" <<  endl;  // Läs av stopptiden och beräkna skillnaden till starttiden
-//        printArray(intArrayBubble);
+        intArray.bubbleSort();
+        cout << "Bubble sort time = " << timer.stop()/1000000 << " [s]" <<  endl;
+        cout << "--------------------------------------------------" << endl;
     }
 
-
-
-    
-
-
-
-	
 	return 0;
 
 }
-//___________________________________________________________________________________________________________________________________________________
