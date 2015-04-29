@@ -30,17 +30,21 @@ void printArray(const IntArray& array) {
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 int main(int argc, const char* argv[])
 {
+    IntArray intArrayQuick;
+    IntArray intArrayInsertion;
+    IntArray intArraySelection;
+    IntArray intArrayBubble;
 
     Timer timer;
     vector<int> levels = { 5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000 };
     //vector<IntArray> arrays = { intArrayQuick, intArrayInsertion, intArraySelection, intArrayBubble};
 
     for (int i = 0; i < 8 ; i++){
-        IntArray intArrayQuick(levels[i]);
+        intArrayQuick = IntArray(levels[i]);
         intArrayQuick.fillWithRandomNumbers();
-        IntArray intArrayInsertion(intArrayQuick);
-        IntArray intArraySelection(intArrayQuick);
-        IntArray intArrayBubble(intArrayQuick);
+        intArrayInsertion = IntArray(intArrayQuick);
+        intArraySelection = IntArray(intArrayQuick);
+        intArrayBubble = IntArray(intArrayQuick);
 
 
 
