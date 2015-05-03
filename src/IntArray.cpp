@@ -181,7 +181,9 @@ void IntArray::swap(int &a, int &b) {
 }
 
 void IntArray::writeToFile(string output, double seconds){
-    fstream outFile(fileName, ios::out);
+    std::ofstream outFile;
+
+    outFile.open(fileName, std::ios_base::app);
     outFile << output << ", " << maxSize << " entries sorted in: " << seconds << "[s]" << endl;
     outFile.close();
 }
