@@ -184,6 +184,6 @@ void IntArray::writeToFile(string output, double seconds){
     std::ofstream outFile;
 
     outFile.open(fileName, std::ios_base::app);
-    outFile << output << ", " << maxSize << " entries sorted in: " << seconds << " [s]" << endl;
+    outFile << output << "\t" << maxSize << "\t" << seconds << endl;
     outFile.close();
 }
