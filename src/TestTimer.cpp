@@ -28,9 +28,7 @@ void printArray(const IntArray& array) {
 int main(int argc, const char* argv[])
 {
 
-    Timer timer;
     vector<int> levels = { 5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000 };
-    vector<IntArray> arrays;
 
     for (size_t i = 0; i < 2; i++){
         int level = levels[i];
