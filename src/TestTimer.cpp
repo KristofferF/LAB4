@@ -30,8 +30,7 @@ int main(int argc, const char* argv[])
 
     vector<int> levels = { 5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000 };
 
-    for (size_t i = 0; i < 2; i++){
-        int level = levels[i];
+    for (int level : levels){
         cout << "--------------------------------------------------" << endl;
         cout << "Testing sorting algorithms for " << level << " entries." << endl << endl;
 
