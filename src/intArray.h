@@ -11,6 +11,7 @@
 #include <iostream>
 #include <functional>
 #include "Timer.h"
+#include <random>
 
 using namespace std;
 
@@ -20,7 +21,6 @@ class IntArray
 		int *arr;  // Pekare till arrayen
 		size_t maxSize; // Arrayens maximala storlek
 		size_t size; // IntArrayens aktuella storlek
-		Timer timer;
         string fileName = "results.txt";
 
 		void quickSortArray(int a[], int first, int last);
@@ -44,13 +44,13 @@ class IntArray
 		const IntArray &operator=(const IntArray &a);
 
 		// ----------------- Slump generator funktion
-		void fillWithRandomNumbers();
+		void fillWithRandomNumbers(default_random_engine generator);
 
 		// ----------------- Sorteringsfunktioner
-        double quickSort(int n);
-        double insertionSort(int n);
-        double selectionSort(int n);
-        double bubbleSort(int n);
+		void quickSort();
+		void insertionSort();
+		void selectionSort();
+		void bubbleSort();
 
         void writeToFile(string output, double seconds);
 };

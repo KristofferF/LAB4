@@ -60,8 +60,7 @@ const IntArray &IntArray::operator=(const IntArray &a) {
     return *this;
 }
 
-void IntArray::fillWithRandomNumbers() {
-    default_random_engine generator(random_device{}());
+void IntArray::fillWithRandomNumbers(default_random_engine generator) {
     uniform_int_distribution<int> random(0, maxSize - 1);
     for (size_t i = 0; i < maxSize; i++) {
         int temp = random(generator);
@@ -69,16 +68,8 @@ void IntArray::fillWithRandomNumbers() {
     }
 }
 
-double IntArray::quickSort(int n) {
-    double seconds = 0;
-    for (size_t turn = 0; turn < n; turn ++) {
-        fillWithRandomNumbers();
-        timer.start();
-        quickSortArray(arr, 0, maxSize);
-        seconds += (timer.stop() / 1000000);
-    }
-    writeToFile("QuickSort", seconds/n);
-    return seconds/n;
+void IntArray::quickSort() {
+    quickSortArray(arr, 0, maxSize);
 }
 
 void IntArray::quickSortArray(int a[], int first, int last) {
@@ -112,66 +103,42 @@ void IntArray::quickSortArray(int a[], int first, int last) {
     }
 }
 
-double IntArray::insertionSort(int n) {
-    double seconds = 0;
-    for (size_t turn = 0; turn < n; turn ++) {
-        fillWithRandomNumbers();
-        timer.start();
-        for (size_t i = 1; i < maxSize; i++) {
-            size_t j = i;
-            while (j > 0 && arr[j - 1] > arr[j]) {
-                int tmp = arr[j];
-                arr[j] = arr[j - 1];
-                arr[j - 1] = tmp;
-                j--;
-            }
+void IntArray::insertionSort() {
+    for (size_t i = 1; i < maxSize; i++) {
+        size_t j = i;
+        while (j > 0 && arr[j - 1] > arr[j]) {
+            int tmp = arr[j];
+            arr[j] = arr[j - 1];
+            arr[j - 1] = tmp;
+            j--;
         }
-        seconds += (timer.stop() / 1000000);
     }
-    writeToFile("InsertionSort", seconds/n);
-    return seconds/n;
 }
 
-double IntArray::selectionSort(int n) {
-    double seconds = 0;
-    for (size_t turn = 0; turn < n; turn ++) {
-        fillWithRandomNumbers();
-        timer.start();
-        size_t smallIdx = 0;
+void IntArray::selectionSort() {
+    size_t smallIdx = 0;
+    for (size_t i = 0; i < maxSize - 1; i++) {
+        smallIdx = i; //Index för det minsta elementet till höger om pos i
+        for (size_t j = i + 1; j < maxSize; j++) { // Sök det minsta "osorterade" elementet
+            if (arr[j] < arr[smallIdx]) {
+                smallIdx = j; // Spara index för det minsta elementet
+            }
+        }
+        if (smallIdx != i) { // Byt plats om det fanns något mindre än a[i]
+            swap(arr[i], arr[smallIdx]);
+        }
+    }
+}
+
+void IntArray::bubbleSort() {
+    for (size_t pass = 0; pass < maxSize - 1; pass++) {
         for (size_t i = 0; i < maxSize - 1; i++) {
-            smallIdx = i; //Index för det minsta elementet till höger om pos i
-            for (size_t j = i + 1; j < maxSize; j++) { // Sök det minsta "osorterade" elementet
-                if (arr[j] < arr[smallIdx]) {
-                    smallIdx = j; // Spara index för det minsta elementet
-                }
-            }
-            if (smallIdx != i) { // Byt plats om det fanns något mindre än a[i]
-                swap(arr[i], arr[smallIdx]);
+            if (arr[i] > arr[i + 1]) // Jämför elementen i och i+1
+            {
+                swap(arr[i], arr[i + 1]); // Byt plats om element i > element i+1
             }
         }
-        seconds += (timer.stop() / 1000000);
     }
-    writeToFile("SelectionSort", seconds/n);
-    return seconds/n;
-}
-
-double IntArray::bubbleSort(int n) {
-    double seconds = 0;
-    for (size_t turn = 0; turn < n; turn ++) {
-        fillWithRandomNumbers();
-        timer.start();
-        for (size_t pass = 0; pass < maxSize - 1; pass++) {
-            for (size_t i = 0; i < maxSize - 1; i++) {
-                if (arr[i] > arr[i + 1]) // Jämför elementen i och i+1
-                {
-                    swap(arr[i], arr[i + 1]); // Byt plats om element i > element i+1
-                }
-            }
-        }
-        seconds += (timer.stop() / 1000000);
-    }
-    writeToFile("BubbleSort", seconds/n);
-    return seconds/n;
 }
 
 void IntArray::swap(int &a, int &b) {
