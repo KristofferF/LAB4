@@ -30,7 +30,7 @@ IntArray::IntArray(const IntArray &a) :
 IntArray::~IntArray() {
     delete[] arr;
     arr = NULL;
-    cout << endl << "Running destructor for IntArray with maxSize= " << maxSize
+    cout << endl << "Running destructor for IntArray with maxSize = " << maxSize
             << endl << endl;
 }
 

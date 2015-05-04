@@ -39,7 +39,5 @@ int main(int argc, const char* argv[])
         cout << "Average result of quick sort: " << intArray.quickSort(10) << " [s]" << endl;
         cout << "--------------------------------------------------" << endl;
     }
-
 	return 0;
-
 }
