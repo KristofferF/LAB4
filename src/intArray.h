@@ -22,8 +22,10 @@ class IntArray
 		size_t maxSize; // Arrayens maximala storlek
 		size_t size; // IntArrayens aktuella storlek
         string fileName = "results.txt";
+		default_random_engine generator;
 
-		void quickSortArray(int a[], int first, int last);
+
+	void quickSortArray(int a[], int first, int last);
 		void swap(int &a, int &b);
 
 

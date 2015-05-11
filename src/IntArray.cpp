@@ -10,23 +10,36 @@
 #include <time.h>
 #include <fstream>
 
+//------------------------------------------------------------------------------
+// Förvald konstruktor (Default constructor)
+//------------------------------------------------------------------------------
 IntArray::IntArray() :
         maxSize(0), size(0) {
     arr = nullptr;
 }
 
+//------------------------------------------------------------------------------
+// Konstruktor för initiering av arrayen
+//------------------------------------------------------------------------------
 IntArray::IntArray(int pMaxSize) :
         maxSize(pMaxSize), size(0) {
     arr = new int[maxSize];
 }
 
+//------------------------------------------------------------------------------
+// Konstruktor för initiering av arrayen. Argumentet är en IntArray
+//------------------------------------------------------------------------------
 IntArray::IntArray(const IntArray &a) :
         maxSize(a.maxSize), size(a.size) {
     arr = new int[a.maxSize];
-    for (size_t i = 0; i < a.size; i++)
+    for (size_t i = 0; i < a.size; i++) {
         arr[i] = a.arr[i];
+    }
 }
 
+//------------------------------------------------------------------------------
+// Destruktor för att ta rensa upp efter klassen
+//------------------------------------------------------------------------------
 IntArray::~IntArray() {
     delete[] arr;
     arr = NULL;
@@ -34,20 +47,18 @@ IntArray::~IntArray() {
             << endl << endl;
 }
 
+//------------------------------------------------------------------------------
+// getValue
+// Returnera datamedlem i arrayen
+//------------------------------------------------------------------------------
 int IntArray::getValue(int idx) const {
     return arr[idx];
 }
 
-bool IntArray::addValue(int value) {
-    bool valueAdded = false;
-    if (size < maxSize) {
-        arr[size] = value;
-        size++;
-        valueAdded = true;
-    }
-    return valueAdded;
-}
-
+//------------------------------------------------------------------------------
+// Överlagrad = operator
+// Returnerar en ny fristående kopia av IntArray.
+//------------------------------------------------------------------------------
 const IntArray &IntArray::operator=(const IntArray &a) {
     if (this != &a) {
         delete[] arr;
@@ -60,6 +71,10 @@ const IntArray &IntArray::operator=(const IntArray &a) {
     return *this;
 }
 
+//------------------------------------------------------------------------------
+// fillWithRandomNumbers
+// Fyller upp arrayen med slumpmässiga tal.
+//------------------------------------------------------------------------------
 void IntArray::fillWithRandomNumbers(default_random_engine generator) {
     uniform_int_distribution<int> random(0, maxSize - 1);
     for (size_t i = 0; i < maxSize; i++) {
@@ -68,10 +83,18 @@ void IntArray::fillWithRandomNumbers(default_random_engine generator) {
     }
 }
 
+//------------------------------------------------------------------------------
+// quickSort
+// Wrapper för quickSortArray.
+//------------------------------------------------------------------------------
 void IntArray::quickSort() {
     quickSortArray(arr, 0, maxSize);
 }
 
+//------------------------------------------------------------------------------
+// quickSortArray
+// Sortera listan med quick sort
+//------------------------------------------------------------------------------
 void IntArray::quickSortArray(int a[], int first, int last) {
     if (first < last) {
         int low = first;
@@ -103,6 +126,10 @@ void IntArray::quickSortArray(int a[], int first, int last) {
     }
 }
 
+//------------------------------------------------------------------------------
+// insertionSort
+// Sortera listan med insertion sort
+//------------------------------------------------------------------------------
 void IntArray::insertionSort() {
     for (size_t i = 1; i < maxSize; i++) {
         size_t j = i;
@@ -115,6 +142,10 @@ void IntArray::insertionSort() {
     }
 }
 
+//------------------------------------------------------------------------------
+// selectionSort
+// Sortera listan med selection sort
+//------------------------------------------------------------------------------
 void IntArray::selectionSort() {
     size_t smallIdx = 0;
     for (size_t i = 0; i < maxSize - 1; i++) {
@@ -130,6 +161,10 @@ void IntArray::selectionSort() {
     }
 }
 
+//------------------------------------------------------------------------------
+// bubbleSort
+// Sortera listan med bubble sort
+//------------------------------------------------------------------------------
 void IntArray::bubbleSort() {
     for (size_t pass = 0; pass < maxSize - 1; pass++) {
         for (size_t i = 0; i < maxSize - 1; i++) {
@@ -141,12 +176,20 @@ void IntArray::bubbleSort() {
     }
 }
 
+//------------------------------------------------------------------------------
+// swap
+// Byter ut två int med varandra
+//------------------------------------------------------------------------------
 void IntArray::swap(int &a, int &b) {
     int tmp = a;
     a = b;
     b = tmp;
 }
 
+//------------------------------------------------------------------------------
+// writeToFile
+// Sparar datan från sorteringarna
+//------------------------------------------------------------------------------
 void IntArray::writeToFile(string output, double seconds){
     std::ofstream outFile;
 
