@@ -49,8 +49,8 @@ int main(int argc, const char* argv[])
             timer.start();
             intArray.bubbleSort();
             seconds += (timer.stop() / 1000000);
-            intArray.writeToFile("BubbleSort", seconds/10);
         }
+        intArray.writeToFile("BubbleSort", seconds/10);
         cout << "Average result of bubble sort: " <<  seconds/10 << " [s]" << endl << endl;
 
         cout << "Sorting 10 random arrays with insertion sort..." << endl;
@@ -60,8 +60,8 @@ int main(int argc, const char* argv[])
             timer.start();
             intArray.insertionSort();
             seconds += (timer.stop() / 1000000);
-            intArray.writeToFile("InsertionSort", seconds/10);
         }
+        intArray.writeToFile("InsertionSort", seconds/10);
         cout << "Average result of insertion sort: " <<  seconds/10 << " [s]" << endl << endl;
 
         cout << "Sorting 10 random arrays with selection sort..." << endl;
@@ -71,8 +71,8 @@ int main(int argc, const char* argv[])
             timer.start();
             intArray.selectionSort();
             seconds += (timer.stop() / 1000000);
-            intArray.writeToFile("SelectionSort", seconds/10);
         }
+        intArray.writeToFile("SelectionSort", seconds/10);
         cout << "Average result of selection sort: " <<  seconds/10 << " [s]" << endl << endl;
 
         cout << "Sorting 10 random arrays with quick sort..." << endl;
@@ -82,8 +82,8 @@ int main(int argc, const char* argv[])
             timer.start();
             intArray.quickSort();
             seconds += (timer.stop() / 1000000);
-            intArray.writeToFile("QuickSort", seconds/10);
         }
+        intArray.writeToFile("QuickSort", seconds/10);
         cout << "Average result of quick sort: " <<  seconds/10 << " [s]" << endl << endl;
 
 //        printArray(intArray);

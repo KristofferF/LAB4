@@ -88,7 +88,7 @@ void IntArray::fillWithRandomNumbers(default_random_engine generator) {
 // Wrapper för quickSortArray.
 //------------------------------------------------------------------------------
 void IntArray::quickSort() {
-    quickSortArray(arr, 0, maxSize);
+    quickSortArray(arr, 0, maxSize-1);
 }
 
 //------------------------------------------------------------------------------
